@@ -4,11 +4,23 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:RecipeBook.Mobile"
-    Title="RecipeBook.Mobile">
+    xmlns:newRecipe="clr-namespace:RecipeBook.Mobile.Screens.NewRecipe"
+    xmlns:parseRecipe="clr-namespace:RecipeBook.Mobile.Screens.ParseRecipe"
+    xmlns:recipeList="clr-namespace:RecipeBook.Mobile.Screens.RecipeList"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Background}" />
+    </Shell.Behaviors>
+    <TabBar CurrentItem="{Reference home}">
+        <Tab Title="Create" Icon="icon_dashboard.png">
+            <ShellContent ContentTemplate="{DataTemplate newRecipe:NewRecipeScreen}" />
+        </Tab>
+        <Tab Title="Recipes" Icon="icon_home.png">
+            <ShellContent x:Name="home" ContentTemplate="{DataTemplate recipeList:RecipeListScreen}" />
+        </Tab>
+        <Tab Title="Parse" Icon="icon_globe_book.png">
+            <ShellContent ContentTemplate="{DataTemplate parseRecipe:ParseRecipeScreen}" />
+        </Tab>
+    </TabBar>
 </Shell>
